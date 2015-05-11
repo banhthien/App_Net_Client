@@ -16,7 +16,6 @@
     __weak IBOutlet UILabel *postLabel;
     __weak IBOutlet UILabel *timeLabel;
     __weak IBOutlet UIButton *replyButton;
-    
     __weak IBOutlet UIButton *reportButton;
     __weak IBOutlet UIButton *starButton;
 }

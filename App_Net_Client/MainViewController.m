@@ -78,6 +78,7 @@
         }];
     }
 }
+#pragma mark - setup UI Refresh Header
 - (void)addPullToRefreshHeader {
     //setup header
     refreshHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0 - REFRESH_HEADER_HEIGHT, 320, REFRESH_HEADER_HEIGHT)];
@@ -104,6 +105,8 @@
     
     [self.refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
 }
+
+#pragma mark - refresh header funtion
 - (void) refresh:(id)sender
 {
     // Can do some thing..
@@ -175,7 +178,7 @@
        [self performSelector:@selector(stopLoading) withObject:nil afterDelay:2.0];
 }
 
-#pragma Funtion
+#pragma mark - data Funtion
 -(void) refreshData{
     NSString *string = [NSString stringWithFormat:@JSON_LINK];
     NSURL *url = [NSURL URLWithString:string];
@@ -232,7 +235,7 @@
     
 }
 
-#pragma Table
+#pragma mark - Table
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -251,7 +254,7 @@
  
  }
 
-
+	
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     

@@ -18,7 +18,7 @@
 #define POST_KEY "text"
 #define TIME_KEY "created_at"
 #define REPLY_KEY "num_replies"
-#define REPORT_KEY "num_reports"
+#define REPORT_KEY "num_reposts"
 #define STAR_KEY "num_stars"
 #define AVATAR_KEY "avatar_image"
 #define URL_IMAGE_KEY "url"

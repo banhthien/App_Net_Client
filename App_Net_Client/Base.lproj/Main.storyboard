@@ -25,12 +25,6 @@
                                                 <constraint firstAttribute="height" constant="69" id="vcX-Be-OsF"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yLR-iQ-G4m">
-                                            <rect key="frame" x="90" y="59" width="275" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bgY-k7-44J">
                                             <rect key="frame" x="126" y="94" width="46" height="30"/>
                                             <state key="normal" title="Button">
@@ -60,6 +54,12 @@
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                         </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yLR-iQ-G4m">
+                                            <rect key="frame" x="90" y="59" width="275" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="tdl-kB-v1b" firstAttribute="leading" secondItem="Izn-gv-r2y" secondAttribute="leading" constant="40" id="28A-Zk-MNg"/>
@@ -84,7 +84,7 @@
                                 <connections>
                                     <outlet property="nameLabel" destination="ItB-kM-pxH" id="3dQ-q2-pmU"/>
                                     <outlet property="postLabel" destination="qa9-dM-su9" id="uUQ-n7-dKc"/>
-                                    <outlet property="replyButton" destination="bgY-k7-44J" id="yeo-Pt-jRs"/>
+                                    <outlet property="replyButton" destination="tdl-kB-v1b" id="Y5B-NJ-jtg"/>
                                     <outlet property="reportButton" destination="bgY-k7-44J" id="VPc-fn-wbx"/>
                                     <outlet property="starButton" destination="UHg-mr-d52" id="2mk-oN-cZI"/>
                                     <outlet property="thumbImageView" destination="kGK-0i-Tor" id="RVM-vM-3LC"/>

@@ -18,6 +18,8 @@
 		576CE4881AF8C6D4009E50FE /* App_Net_ClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 576CE4871AF8C6D4009E50FE /* App_Net_ClientTests.m */; };
 		576CE4931AF8CBB1009E50FE /* PostNSObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 576CE4921AF8CBB1009E50FE /* PostNSObject.m */; };
 		578323051B0097C100E7F410 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 578323041B0097C100E7F410 /* CoreData.framework */; };
+		5783230A1B00A51200E7F410 /* PostData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 578323081B00A51200E7F410 /* PostData.xcdatamodeld */; };
+		5783230D1B00A5B300E7F410 /* PostCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 5783230C1B00A5B300E7F410 /* PostCore.m */; };
 		BEE905E53B0867AABCC9D5C7 /* libPods-App_Net_Client.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 88C4A5C20176A7F02D58500C /* libPods-App_Net_Client.a */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +54,9 @@
 		576CE4921AF8CBB1009E50FE /* PostNSObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostNSObject.m; sourceTree = "<group>"; };
 		578323041B0097C100E7F410 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		578323061B009AE500E7F410 /* define.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = define.h; sourceTree = "<group>"; };
+		578323091B00A51200E7F410 /* PostData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PostData.xcdatamodel; sourceTree = "<group>"; };
+		5783230B1B00A5B300E7F410 /* PostCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostCore.h; sourceTree = "<group>"; };
+		5783230C1B00A5B300E7F410 /* PostCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostCore.m; sourceTree = "<group>"; };
 		82FD16D14DD537A5FB5A5BAD /* Pods-App_Net_Client.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App_Net_Client.release.xcconfig"; path = "Pods/Target Support Files/Pods-App_Net_Client/Pods-App_Net_Client.release.xcconfig"; sourceTree = "<group>"; };
 		88C4A5C20176A7F02D58500C /* libPods-App_Net_Client.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-App_Net_Client.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE205C5E5BF267F77EAFC4C6 /* Pods-App_Net_Client.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App_Net_Client.debug.xcconfig"; path = "Pods/Target Support Files/Pods-App_Net_Client/Pods-App_Net_Client.debug.xcconfig"; sourceTree = "<group>"; };
@@ -89,18 +94,19 @@
 		5726681B1AFB2945006733D5 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				5726681C1AFB2955006733D5 /* PostModel */,
+				5783230E1B00A5B700E7F410 /* PostCoreDataModel */,
+				5726681C1AFB2955006733D5 /* PostNSObjectModel */,
 			);
 			name = Models;
 			sourceTree = "<group>";
 		};
-		5726681C1AFB2955006733D5 /* PostModel */ = {
+		5726681C1AFB2955006733D5 /* PostNSObjectModel */ = {
 			isa = PBXGroup;
 			children = (
 				576CE4911AF8CBB1009E50FE /* PostNSObject.h */,
 				576CE4921AF8CBB1009E50FE /* PostNSObject.m */,
 			);
-			name = PostModel;
+			name = PostNSObjectModel;
 			sourceTree = "<group>";
 		};
 		5726681D1AFB2962006733D5 /* Controllers */ = {
@@ -170,6 +176,7 @@
 				576CE4781AF8C6D4009E50FE /* Images.xcassets */,
 				576CE47A1AF8C6D4009E50FE /* LaunchScreen.xib */,
 				576CE4681AF8C6D4009E50FE /* Supporting Files */,
+				578323081B00A51200E7F410 /* PostData.xcdatamodeld */,
 			);
 			path = App_Net_Client;
 			sourceTree = "<group>";
@@ -207,6 +214,15 @@
 				578323061B009AE500E7F410 /* define.h */,
 			);
 			name = Share;
+			sourceTree = "<group>";
+		};
+		5783230E1B00A5B700E7F410 /* PostCoreDataModel */ = {
+			isa = PBXGroup;
+			children = (
+				5783230B1B00A5B300E7F410 /* PostCore.h */,
+				5783230C1B00A5B300E7F410 /* PostCore.m */,
+			);
+			name = PostCoreDataModel;
 			sourceTree = "<group>";
 		};
 		C0543CB61A6E5FE2B02889B7 /* Frameworks */ = {
@@ -358,7 +374,9 @@
 				576CE46E1AF8C6D4009E50FE /* AppDelegate.m in Sources */,
 				57626D8E1AF9B49E0039AD5D /* MainViewController.m in Sources */,
 				576CE46B1AF8C6D4009E50FE /* main.m in Sources */,
+				5783230D1B00A5B300E7F410 /* PostCore.m in Sources */,
 				57626DB41AF9BFB00039AD5D /* CustomTableViewCell.m in Sources */,
+				5783230A1B00A51200E7F410 /* PostData.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -563,6 +581,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		578323081B00A51200E7F410 /* PostData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				578323091B00A51200E7F410 /* PostData.xcdatamodel */,
+			);
+			currentVersion = 578323091B00A51200E7F410 /* PostData.xcdatamodel */;
+			path = PostData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 576CE45D1AF8C6D4009E50FE /* Project object */;
 }
