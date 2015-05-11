@@ -10,14 +10,14 @@
 	<string>App_Net_Client</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>0DB738A0D24774826C9B9338913D73092DE9B461</key>
+		<key>685F9BE57BDE3BC0703CA1668E7F35460452557B</key>
 		<string>https://github.com/banhthien/App_Net_Client.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>App_Net_Client.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>0DB738A0D24774826C9B9338913D73092DE9B461</key>
+		<key>685F9BE57BDE3BC0703CA1668E7F35460452557B</key>
 		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
@@ -25,14 +25,14 @@
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>0DB738A0D24774826C9B9338913D73092DE9B461</string>
+	<string>685F9BE57BDE3BC0703CA1668E7F35460452557B</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>0DB738A0D24774826C9B9338913D73092DE9B461</string>
+			<string>685F9BE57BDE3BC0703CA1668E7F35460452557B</string>
 			<key>IDESourceControlWCCName</key>
 			<string>App_Net_Client</string>
 		</dict>

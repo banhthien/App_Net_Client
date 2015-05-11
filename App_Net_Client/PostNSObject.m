@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 BanhThien. All rights reserved.
 //
 
-#import "Post.h"
+#import "PostNSObject.h"
 
-@implementation Post
+@implementation PostNSObject
 @synthesize name;
 @synthesize avatar;
 @synthesize post;

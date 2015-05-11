@@ -7,8 +7,8 @@
 //
 
 #import "MainViewController.h"
-#import "Post.h"
-#import "AFNetWorking.h"
+#import "PostNSObject.h"
+#import "define.h"
 @interface MainViewController ()
 
 @property (nonatomic, strong) CustomTableViewCell *prototypeCell;
@@ -17,10 +17,7 @@
 
 
 @implementation MainViewController
-#define REFRESH_HEADER_HEIGHT 52.0f
-#define REFRESH_TEXT_PULL "Pull down to refresh..."
-#define REFRESH_RELEASE "Release to refresh..."
-#define REFRESH_LOADING "Loading..."
+
 
 @synthesize isDragging;
 @synthesize isLoading;
@@ -180,7 +177,7 @@
 
 #pragma Funtion
 -(void) refreshData{
-    NSString *string = [NSString stringWithFormat:@"http://alpha-api.app.net/stream/0/posts/stream/global"];
+    NSString *string = [NSString stringWithFormat:@JSON_LINK];
     NSURL *url = [NSURL URLWithString:string];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
@@ -191,25 +188,25 @@
         
         listPost = [NSMutableArray array];
         self.data = (NSDictionary *)responseObject;
-        NSArray* dataPost = [responseObject valueForKeyPath:@"data"];
+        NSArray* dataPost = [responseObject valueForKeyPath:@DATA_NAME];
         
         for (NSDictionary *dict in dataPost)
         {
-            Post *post = [[Post alloc] init];
+            PostNSObject *post = [[PostNSObject alloc] init];
             
-            post.post= [dict objectForKey:@"text"];
-            post.time= [dict objectForKey:@"created_at"];
-            post.repliesNumber = [dict objectForKey:@"num_replies"];
-            post.reportsNumber = [dict objectForKey:@"num_reposts"];
-            post.starsNumber = [dict objectForKey:@"num_stars"];
+            post.post= [dict objectForKey:@POST_KEY];
+            post.time= [dict objectForKey:@TIME_KEY];
+            post.repliesNumber = [dict objectForKey:@REPLY_KEY];
+            post.reportsNumber = [dict objectForKey:@REPORT_KEY];
+            post.starsNumber = [dict objectForKey:@STAR_KEY];
             
-            NSDictionary* user = [dict valueForKey:@"user"];
+            NSDictionary* user = [dict valueForKey:@USER_KEY];
             if(user){
-                NSDictionary* avatarImage = [user valueForKey:@"avatar_image"];
+                NSDictionary* avatarImage = [user valueForKey:@AVATAR_KEY];
                 if (avatarImage) {
-                    post.avatar = [avatarImage valueForKey:@"url"];
+                    post.avatar = [avatarImage valueForKey:@URL_IMAGE_KEY];
                 }
-                post.name = [user objectForKey:@"username"];
+                post.name = [user objectForKey:@USER_NAME_KEY];
             }
             
             if (![self.listPost containsObject:post]) {
@@ -247,40 +244,9 @@
         cell = [[CustomTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellindentifier];
     }
     
-     Post *post = [listPost objectAtIndex:indexPath.row];
+     PostNSObject *post = [listPost objectAtIndex:indexPath.row];
     // show text
-     cell.nameLabel.font = [UIFont boldSystemFontOfSize:16.0f];
-     cell.postLabel.text = post.post;
-     cell.nameLabel.text = post.name;
-    
-    //config time and show time
-     NSDateFormatter *inputFormatter = [[NSDateFormatter alloc] init];
-     [inputFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
-    
-     NSDate *formatterDate = [inputFormatter dateFromString:post.time];
-    
-    NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
-    [outputFormatter setDateFormat:@"yyyy-MM-dd' 'HH:mm:ss"];
-    NSString *newDateString = [outputFormatter stringFromDate:formatterDate];
-    cell.time.text=newDateString;
-    
-    // load image then fix border
-     NSURL *url = [NSURL URLWithString:post.avatar];
-     NSData *data = [NSData dataWithContentsOfURL:url];
-     UIImage * image = [UIImage imageWithData:data];
-    
-     cell.avatar.image = image;
-     cell.avatar.layer.borderWidth = 0.5f;
-     cell.avatar.layer.borderColor = [UIColor grayColor].CGColor;
-     cell.avatar.layer.masksToBounds = NO;
-     cell.avatar.layer.cornerRadius = 20;
-     cell.avatar.clipsToBounds = YES;
-    
-    //set text button
-    [cell.repliesButton setTitle:[NSString stringWithFormat:@"%@ Replies",post.repliesNumber] forState:UIControlStateNormal];
-    [cell.reportButton setTitle:[NSString stringWithFormat:@"%@ Reports",post.reportsNumber] forState:UIControlStateNormal];
-    [cell.starButton setTitle:[NSString stringWithFormat:@"%@ Stars",post.starsNumber] forState:UIControlStateNormal];
-    
+    [cell setupCellwithPost:post];
      return cell;
  
  }
@@ -289,7 +255,7 @@
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    Post *post = [listPost objectAtIndex:indexPath.row];
+    PostNSObject *post = [listPost objectAtIndex:indexPath.row];
     
     
     NSString *headline  = post.post;

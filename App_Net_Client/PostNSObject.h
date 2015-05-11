@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Post : NSObject
+@interface PostNSObject : NSObject
 
 @property NSString *post;
 @property NSString *name;

@@ -7,14 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "PostNSObject.h"
 @interface CustomTableViewCell : UITableViewCell
-@property (strong, nonatomic) IBOutlet UIImageView *avatar;
-@property (strong, nonatomic) IBOutlet UILabel *nameLabel;
-@property (strong, nonatomic) IBOutlet UILabel *postLabel;
-@property (strong, nonatomic) IBOutlet UILabel *time;
-@property (strong, nonatomic) IBOutlet UIButton *repliesButton;
-@property (strong, nonatomic) IBOutlet UIButton *reportButton;
-@property (strong, nonatomic) IBOutlet UIButton *starButton;
+{
+    
+    __weak IBOutlet UIImageView *thumbImageView;
+    __weak IBOutlet UILabel *nameLabel;
+    __weak IBOutlet UILabel *postLabel;
+    __weak IBOutlet UILabel *timeLabel;
+    __weak IBOutlet UIButton *replyButton;
+    
+    __weak IBOutlet UIButton *reportButton;
+    __weak IBOutlet UIButton *starButton;
+}
 
+-(void)setupCellwithPost:(PostNSObject*)post;
 @end

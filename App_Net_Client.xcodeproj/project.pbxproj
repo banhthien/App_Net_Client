@@ -16,7 +16,8 @@
 		576CE4791AF8C6D4009E50FE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 576CE4781AF8C6D4009E50FE /* Images.xcassets */; };
 		576CE47C1AF8C6D4009E50FE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 576CE47A1AF8C6D4009E50FE /* LaunchScreen.xib */; };
 		576CE4881AF8C6D4009E50FE /* App_Net_ClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 576CE4871AF8C6D4009E50FE /* App_Net_ClientTests.m */; };
-		576CE4931AF8CBB1009E50FE /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 576CE4921AF8CBB1009E50FE /* Post.m */; };
+		576CE4931AF8CBB1009E50FE /* PostNSObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 576CE4921AF8CBB1009E50FE /* PostNSObject.m */; };
+		578323051B0097C100E7F410 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 578323041B0097C100E7F410 /* CoreData.framework */; };
 		BEE905E53B0867AABCC9D5C7 /* libPods-App_Net_Client.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 88C4A5C20176A7F02D58500C /* libPods-App_Net_Client.a */; };
 /* End PBXBuildFile section */
 
@@ -47,8 +48,10 @@
 		576CE4811AF8C6D4009E50FE /* App_Net_ClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = App_Net_ClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		576CE4861AF8C6D4009E50FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		576CE4871AF8C6D4009E50FE /* App_Net_ClientTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = App_Net_ClientTests.m; sourceTree = "<group>"; };
-		576CE4911AF8CBB1009E50FE /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
-		576CE4921AF8CBB1009E50FE /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
+		576CE4911AF8CBB1009E50FE /* PostNSObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostNSObject.h; sourceTree = "<group>"; };
+		576CE4921AF8CBB1009E50FE /* PostNSObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostNSObject.m; sourceTree = "<group>"; };
+		578323041B0097C100E7F410 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		578323061B009AE500E7F410 /* define.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = define.h; sourceTree = "<group>"; };
 		82FD16D14DD537A5FB5A5BAD /* Pods-App_Net_Client.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App_Net_Client.release.xcconfig"; path = "Pods/Target Support Files/Pods-App_Net_Client/Pods-App_Net_Client.release.xcconfig"; sourceTree = "<group>"; };
 		88C4A5C20176A7F02D58500C /* libPods-App_Net_Client.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-App_Net_Client.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE205C5E5BF267F77EAFC4C6 /* Pods-App_Net_Client.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App_Net_Client.debug.xcconfig"; path = "Pods/Target Support Files/Pods-App_Net_Client/Pods-App_Net_Client.debug.xcconfig"; sourceTree = "<group>"; };
@@ -59,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				578323051B0097C100E7F410 /* CoreData.framework in Frameworks */,
 				BEE905E53B0867AABCC9D5C7 /* libPods-App_Net_Client.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -93,8 +97,8 @@
 		5726681C1AFB2955006733D5 /* PostModel */ = {
 			isa = PBXGroup;
 			children = (
-				576CE4911AF8CBB1009E50FE /* Post.h */,
-				576CE4921AF8CBB1009E50FE /* Post.m */,
+				576CE4911AF8CBB1009E50FE /* PostNSObject.h */,
+				576CE4921AF8CBB1009E50FE /* PostNSObject.m */,
 			);
 			name = PostModel;
 			sourceTree = "<group>";
@@ -156,6 +160,7 @@
 		576CE4671AF8C6D4009E50FE /* App_Net_Client */ = {
 			isa = PBXGroup;
 			children = (
+				578323071B009AEB00E7F410 /* Share */,
 				572668221AFB3B04006733D5 /* View */,
 				5726681D1AFB2962006733D5 /* Controllers */,
 				5726681B1AFB2945006733D5 /* Models */,
@@ -196,9 +201,18 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		578323071B009AEB00E7F410 /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				578323061B009AE500E7F410 /* define.h */,
+			);
+			name = Share;
+			sourceTree = "<group>";
+		};
 		C0543CB61A6E5FE2B02889B7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				578323041B0097C100E7F410 /* CoreData.framework */,
 				88C4A5C20176A7F02D58500C /* libPods-App_Net_Client.a */,
 			);
 			name = Frameworks;
@@ -340,7 +354,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				576CE4931AF8CBB1009E50FE /* Post.m in Sources */,
+				576CE4931AF8CBB1009E50FE /* PostNSObject.m in Sources */,
 				576CE46E1AF8C6D4009E50FE /* AppDelegate.m in Sources */,
 				57626D8E1AF9B49E0039AD5D /* MainViewController.m in Sources */,
 				576CE46B1AF8C6D4009E50FE /* main.m in Sources */,
