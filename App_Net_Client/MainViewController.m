@@ -7,7 +7,6 @@
 //
 
 #import "MainViewController.h"
-#import "PostNSObject.h"
 #import "PostCore.h"
 #import "define.h"
 #import "Reachability.h"
@@ -222,12 +221,12 @@
     operation.responseSerializer = [AFJSONResponseSerializer serializer];
     
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
+        NSError *error;
         
         NSArray* dataPost = [responseObject valueForKeyPath:@DATA_NAME];
         //delete old data from coredata
         [self deleteAll];
-        NSError *error;
+        
         //insert data from json file to coredata
         for (NSDictionary *dict in dataPost)
         {

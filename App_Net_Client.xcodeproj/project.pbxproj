@@ -16,7 +16,6 @@
 		576CE4791AF8C6D4009E50FE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 576CE4781AF8C6D4009E50FE /* Images.xcassets */; };
 		576CE47C1AF8C6D4009E50FE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 576CE47A1AF8C6D4009E50FE /* LaunchScreen.xib */; };
 		576CE4881AF8C6D4009E50FE /* App_Net_ClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 576CE4871AF8C6D4009E50FE /* App_Net_ClientTests.m */; };
-		576CE4931AF8CBB1009E50FE /* PostNSObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 576CE4921AF8CBB1009E50FE /* PostNSObject.m */; };
 		578323051B0097C100E7F410 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 578323041B0097C100E7F410 /* CoreData.framework */; };
 		5783230A1B00A51200E7F410 /* PostData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 578323081B00A51200E7F410 /* PostData.xcdatamodeld */; };
 		5783230D1B00A5B300E7F410 /* PostCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 5783230C1B00A5B300E7F410 /* PostCore.m */; };
@@ -52,8 +51,6 @@
 		576CE4811AF8C6D4009E50FE /* App_Net_ClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = App_Net_ClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		576CE4861AF8C6D4009E50FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		576CE4871AF8C6D4009E50FE /* App_Net_ClientTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = App_Net_ClientTests.m; sourceTree = "<group>"; };
-		576CE4911AF8CBB1009E50FE /* PostNSObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostNSObject.h; sourceTree = "<group>"; };
-		576CE4921AF8CBB1009E50FE /* PostNSObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostNSObject.m; sourceTree = "<group>"; };
 		578323041B0097C100E7F410 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		578323061B009AE500E7F410 /* define.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = define.h; sourceTree = "<group>"; };
 		578323091B00A51200E7F410 /* PostData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PostData.xcdatamodel; sourceTree = "<group>"; };
@@ -102,18 +99,8 @@
 			isa = PBXGroup;
 			children = (
 				5783230E1B00A5B700E7F410 /* PostCoreDataModel */,
-				5726681C1AFB2955006733D5 /* PostNSObjectModel */,
 			);
 			name = Models;
-			sourceTree = "<group>";
-		};
-		5726681C1AFB2955006733D5 /* PostNSObjectModel */ = {
-			isa = PBXGroup;
-			children = (
-				576CE4911AF8CBB1009E50FE /* PostNSObject.h */,
-				576CE4921AF8CBB1009E50FE /* PostNSObject.m */,
-			);
-			name = PostNSObjectModel;
 			sourceTree = "<group>";
 		};
 		5726681D1AFB2962006733D5 /* Controllers */ = {
@@ -380,7 +367,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				576CE4931AF8CBB1009E50FE /* PostNSObject.m in Sources */,
 				576CE46E1AF8C6D4009E50FE /* AppDelegate.m in Sources */,
 				578323161B00B9A500E7F410 /* Reachability.m in Sources */,
 				57626D8E1AF9B49E0039AD5D /* MainViewController.m in Sources */,
