@@ -8,11 +8,12 @@
 
 #import "MainViewController.h"
 #import "PostNSObject.h"
+#import "PostCore.h"
 #import "define.h"
+#import "Reachability.h"
 @interface MainViewController ()
 
-@property (nonatomic, strong) CustomTableViewCell *prototypeCell;
-
+@property (nonatomic) Reachability *internetReachability;
 @end
 
 
@@ -28,13 +29,45 @@
 @synthesize refreshSpinner;
 @synthesize listPost;
 
+@synthesize managedObjectContext = _managedObjectContext;
+@synthesize managedObjectModel = _managedObjectModel;
+@synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+  
+
+    AppDelegate *apdelegate = [[UIApplication sharedApplication] delegate];
+    _managedObjectContext = [apdelegate managedObjectContext];
+    listPost = [NSMutableArray array];
+    // check internet connection
+    self.internetReachability = [Reachability reachabilityForInternetConnection];
+    NetworkStatus netStatus = [self.internetReachability currentReachabilityStatus];
+    switch (netStatus)
+    {
+        case NotReachable:
+        {
+            NSLog(@"no internet connection,load local data");
+            [self selectAll];
+        }
+            break;
+            
+        case ReachableViaWWAN:
+        {
+            NSLog(@"internet WWAN");
+            [self refreshData];
+        }
+            break;
+            
+        case ReachableViaWiFi:
+        {
+            NSLog(@"internet WIFI");
+            [self refreshData];
+        }
+            break;
+            
+    }
+
     [self addPullToRefreshHeader];
-     [self refreshData];
-//    [self.mainTableView registerClass:[CustomTableViewCell class] forCellReuseIdentifier:@"Cell"];
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -112,7 +145,6 @@
     // Can do some thing..
     //[self clearDataOld];
     [self refreshData];
-    NSLog(@"da vao load");
     // Time delay is 3 seconds, sure the request load ok, load data or information done.
     double delayInSeconds = 3.0;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
@@ -180,6 +212,8 @@
 
 #pragma mark - data Funtion
 -(void) refreshData{
+    
+    //get link to json file
     NSString *string = [NSString stringWithFormat:@JSON_LINK];
     NSURL *url = [NSURL URLWithString:string];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -189,34 +223,40 @@
     
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        listPost = [NSMutableArray array];
-        self.data = (NSDictionary *)responseObject;
-        NSArray* dataPost = [responseObject valueForKeyPath:@DATA_NAME];
         
+        NSArray* dataPost = [responseObject valueForKeyPath:@DATA_NAME];
+        //delete old data from coredata
+        [self deleteAll];
+        NSError *error;
+        //insert data from json file to coredata
         for (NSDictionary *dict in dataPost)
         {
-            PostNSObject *post = [[PostNSObject alloc] init];
-            
-            post.post= [dict objectForKey:@POST_KEY];
+            PostCore *post = [NSEntityDescription insertNewObjectForEntityForName:@"PostCore" inManagedObjectContext:_managedObjectContext];
+            post.postText =[dict objectForKey:@POST_KEY];
             post.time= [dict objectForKey:@TIME_KEY];
-            post.repliesNumber = [dict objectForKey:@REPLY_KEY];
-            post.reportsNumber = [dict objectForKey:@REPORT_KEY];
-            post.starsNumber = [dict objectForKey:@STAR_KEY];
-            
+            //post.reply = [dict objectForKey:@REPLY_KEY];
+            //post.report = [dict objectForKey:@REPORT_KEY];
+            //post.star = [dict objectForKey:@STAR_KEY];
             NSDictionary* user = [dict valueForKey:@USER_KEY];
-            if(user){
+            if(user)
+            {
                 NSDictionary* avatarImage = [user valueForKey:@AVATAR_KEY];
-                if (avatarImage) {
-                    post.avatar = [avatarImage valueForKey:@URL_IMAGE_KEY];
+                if (avatarImage)
+                {
+                    post.imageUrl = [avatarImage valueForKey:@URL_IMAGE_KEY];
                 }
                 post.name = [user objectForKey:@USER_NAME_KEY];
             }
-            
-            if (![self.listPost containsObject:post]) {
-                [self.listPost addObject:post];
+                       
+            if(![_managedObjectContext save:&error]){
+                NSLog(@"co loi , %@", [error localizedDescription]);
             }
+
         }
         
+        // select all data, then add to listPost
+        [self selectAll];
+        // sort by time
         NSArray* sortDescriptors = [NSArray arrayWithObjects:[NSSortDescriptor sortDescriptorWithKey:@"time" ascending:NO], nil];
         [self.listPost sortUsingDescriptors: sortDescriptors];
         
@@ -234,7 +274,32 @@
     [operation start];
     
 }
+-(void)selectAll
+{
+    NSError *error;
+    NSFetchRequest *fetch= [[NSFetchRequest alloc] init];
+    NSEntityDescription *entityselect=[NSEntityDescription entityForName:@"PostCore" inManagedObjectContext:_managedObjectContext];
+    [fetch setEntity:entityselect];
+    
+    listPost= [[_managedObjectContext executeFetchRequest:fetch error:&error] mutableCopy];
+}
+-(void)deleteAll
+{
+    NSError *error;
+    NSFetchRequest *fetch= [[NSFetchRequest alloc] init];
+    NSEntityDescription *entitydelete=[NSEntityDescription entityForName:@"PostCore" inManagedObjectContext:_managedObjectContext];
+    [fetch setEntity:entitydelete];
+    
+    
+    NSMutableArray *listPostDelete =[[_managedObjectContext executeFetchRequest:fetch error:&error] mutableCopy];
+    for (PostCore *Entity in listPostDelete) {
+        [_managedObjectContext deleteObject:Entity];
+    }
+    if(![_managedObjectContext save:&error]){
+        NSLog(@"co loi , %@", [error localizedDescription]);
+    }
 
+}
 #pragma mark - Table
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -247,21 +312,20 @@
         cell = [[CustomTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellindentifier];
     }
     
-     PostNSObject *post = [listPost objectAtIndex:indexPath.row];
-    // show text
+     PostCore *post = [listPost objectAtIndex:indexPath.row];
+    // custom cell
     [cell setupCellwithPost:post];
      return cell;
  
  }
 
-	
+
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    //set height of cell by height of post text
+    PostCore *post = [listPost objectAtIndex:indexPath.row];
     
-    PostNSObject *post = [listPost objectAtIndex:indexPath.row];
-    
-    
-    NSString *headline  = post.post;
+    NSString *headline  = post.postText;
     UIFont *font        = [UIFont boldSystemFontOfSize:18];
     CGRect  rect        = [headline boundingRectWithSize:CGSizeMake(300, 1000) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:font} context:nil];
     

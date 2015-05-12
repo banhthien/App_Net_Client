@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PostNSObject.h"
+#import "PostCore.h"
 @interface CustomTableViewCell : UITableViewCell
 {
     
@@ -20,5 +20,5 @@
     __weak IBOutlet UIButton *starButton;
 }
 
--(void)setupCellwithPost:(PostNSObject*)post;
+-(void)setupCellwithPost:(PostCore*)post;
 @end

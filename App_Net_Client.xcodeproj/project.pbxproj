@@ -20,6 +20,8 @@
 		578323051B0097C100E7F410 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 578323041B0097C100E7F410 /* CoreData.framework */; };
 		5783230A1B00A51200E7F410 /* PostData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 578323081B00A51200E7F410 /* PostData.xcdatamodeld */; };
 		5783230D1B00A5B300E7F410 /* PostCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 5783230C1B00A5B300E7F410 /* PostCore.m */; };
+		578323101B00B5EA00E7F410 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5783230F1B00B5EA00E7F410 /* SystemConfiguration.framework */; };
+		578323161B00B9A500E7F410 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 578323151B00B9A500E7F410 /* Reachability.m */; };
 		BEE905E53B0867AABCC9D5C7 /* libPods-App_Net_Client.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 88C4A5C20176A7F02D58500C /* libPods-App_Net_Client.a */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +59,10 @@
 		578323091B00A51200E7F410 /* PostData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PostData.xcdatamodel; sourceTree = "<group>"; };
 		5783230B1B00A5B300E7F410 /* PostCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostCore.h; sourceTree = "<group>"; };
 		5783230C1B00A5B300E7F410 /* PostCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostCore.m; sourceTree = "<group>"; };
+		5783230F1B00B5EA00E7F410 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		578323141B00B9A500E7F410 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		578323151B00B9A500E7F410 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		578323171B00BF5D00E7F410 /* PostData 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "PostData 2.xcdatamodel"; sourceTree = "<group>"; };
 		82FD16D14DD537A5FB5A5BAD /* Pods-App_Net_Client.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App_Net_Client.release.xcconfig"; path = "Pods/Target Support Files/Pods-App_Net_Client/Pods-App_Net_Client.release.xcconfig"; sourceTree = "<group>"; };
 		88C4A5C20176A7F02D58500C /* libPods-App_Net_Client.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-App_Net_Client.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE205C5E5BF267F77EAFC4C6 /* Pods-App_Net_Client.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App_Net_Client.debug.xcconfig"; path = "Pods/Target Support Files/Pods-App_Net_Client/Pods-App_Net_Client.debug.xcconfig"; sourceTree = "<group>"; };
@@ -67,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				578323101B00B5EA00E7F410 /* SystemConfiguration.framework in Frameworks */,
 				578323051B0097C100E7F410 /* CoreData.framework in Frameworks */,
 				BEE905E53B0867AABCC9D5C7 /* libPods-App_Net_Client.a in Frameworks */,
 			);
@@ -211,6 +218,8 @@
 		578323071B009AEB00E7F410 /* Share */ = {
 			isa = PBXGroup;
 			children = (
+				578323141B00B9A500E7F410 /* Reachability.h */,
+				578323151B00B9A500E7F410 /* Reachability.m */,
 				578323061B009AE500E7F410 /* define.h */,
 			);
 			name = Share;
@@ -228,6 +237,7 @@
 		C0543CB61A6E5FE2B02889B7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5783230F1B00B5EA00E7F410 /* SystemConfiguration.framework */,
 				578323041B0097C100E7F410 /* CoreData.framework */,
 				88C4A5C20176A7F02D58500C /* libPods-App_Net_Client.a */,
 			);
@@ -372,6 +382,7 @@
 			files = (
 				576CE4931AF8CBB1009E50FE /* PostNSObject.m in Sources */,
 				576CE46E1AF8C6D4009E50FE /* AppDelegate.m in Sources */,
+				578323161B00B9A500E7F410 /* Reachability.m in Sources */,
 				57626D8E1AF9B49E0039AD5D /* MainViewController.m in Sources */,
 				576CE46B1AF8C6D4009E50FE /* main.m in Sources */,
 				5783230D1B00A5B300E7F410 /* PostCore.m in Sources */,
@@ -586,6 +597,7 @@
 		578323081B00A51200E7F410 /* PostData.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				578323171B00BF5D00E7F410 /* PostData 2.xcdatamodel */,
 				578323091B00A51200E7F410 /* PostData.xcdatamodel */,
 			);
 			currentVersion = 578323091B00A51200E7F410 /* PostData.xcdatamodel */;

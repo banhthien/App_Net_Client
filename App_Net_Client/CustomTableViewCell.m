@@ -7,7 +7,6 @@
 //
 
 #import "CustomTableViewCell.h"
-
 @implementation CustomTableViewCell
 
 - (void)awakeFromNib {
@@ -19,10 +18,10 @@
 
     // Configure the view for the selected state
 }
--(void)setupCellwithPost:(PostNSObject *)post
+-(void)setupCellwithPost:(PostCore *)post
 {
     nameLabel.font = [UIFont boldSystemFontOfSize:16.0f];
-    postLabel.text = post.post;
+    postLabel.text = post.postText;
     nameLabel.text = post.name;
     
     //config time and show time
@@ -37,7 +36,7 @@
     timeLabel.text=newDateString;
     
     // load image then fix border
-    NSURL *url = [NSURL URLWithString:post.avatar];
+    NSURL *url = [NSURL URLWithString:post.imageUrl];
     NSData *data = [NSData dataWithContentsOfURL:url];
     UIImage * image = [UIImage imageWithData:data];
     
@@ -49,9 +48,9 @@
     thumbImageView.clipsToBounds = YES;
     
     //set text button
-    [replyButton setTitle:[NSString stringWithFormat:@"%@ Replies",post.repliesNumber] forState:UIControlStateNormal];
-    [reportButton setTitle:[NSString stringWithFormat:@"%@ Reports",post.reportsNumber] forState:UIControlStateNormal];
-    [starButton setTitle:[NSString stringWithFormat:@"%@ Stars",post.starsNumber] forState:UIControlStateNormal];
+    //[replyButton setTitle:[NSString stringWithFormat:@"%@ Replies",post.reply] forState:UIControlStateNormal];
+    //[reportButton setTitle:[NSString stringWithFormat:@"%@ Reports",post.report] forState:UIControlStateNormal];
+    //[starButton setTitle:[NSString stringWithFormat:@"%@ Stars",post.star] forState:UIControlStateNormal];
 
 }
 @end
