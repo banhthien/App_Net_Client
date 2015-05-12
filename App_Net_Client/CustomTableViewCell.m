@@ -10,21 +10,26 @@
 @implementation CustomTableViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
-    // Configure the view for the selected state
 }
+/**
+ *  setup UI off cell
+ *
+ *  @param post is Post model(coredata), not null
+ */
 -(void)setupCellwithPost:(PostCore *)post
 {
     nameLabel.font = [UIFont boldSystemFontOfSize:16.0f];
     postLabel.text = post.postText;
     nameLabel.text = post.name;
-    
-    //config time and show time
+   
+    /**
+     config time and show time
+     */
     NSDateFormatter *inputFormatter = [[NSDateFormatter alloc] init];
     [inputFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
     
@@ -35,7 +40,9 @@
     NSString *newDateString = [outputFormatter stringFromDate:formatterDate];
     timeLabel.text=newDateString;
     
-    // load image then fix border
+    /**
+     *  Load image then fix border
+     */
     NSURL *url = [NSURL URLWithString:post.imageUrl];
     NSData *data = [NSData dataWithContentsOfURL:url];
     UIImage * image = [UIImage imageWithData:data];

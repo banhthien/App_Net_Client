@@ -31,14 +31,16 @@
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-  
-
+    
     AppDelegate *apdelegate = [[UIApplication sharedApplication] delegate];
     _managedObjectContext = [apdelegate managedObjectContext];
     listPost = [NSMutableArray array];
-    // check internet connection
+    /**
+     *  check internet connection
+     */
     self.internetReachability = [Reachability reachabilityForInternetConnection];
     NetworkStatus netStatus = [self.internetReachability currentReachabilityStatus];
     switch (netStatus)
@@ -65,54 +67,54 @@
             break;
             
     }
-
+    /**
+     *  add refresh header
+     */
     [self addPullToRefreshHeader];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
-    // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    // Return the number of rows in the section.
     return listPost.count;
 }
 
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     if (isLoading) {
-        // Update the content inset, good for section headers
         if (scrollView.contentOffset.y > 0)
             self.tableView.contentInset = UIEdgeInsetsZero;
         else if (scrollView.contentOffset.y >= -REFRESH_HEADER_HEIGHT)
             self.tableView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
     } else if (isDragging && scrollView.contentOffset.y < 0) {
-        // Update the arrow direction and label
         [UIView animateWithDuration:0.25 animations:^{
             if (scrollView.contentOffset.y < -REFRESH_HEADER_HEIGHT) {
-                // User is scrolling above the header
                 refreshLabel.text = @REFRESH_RELEASE;
                 [refreshArrow layer].transform = CATransform3DMakeRotation(M_PI, 0, 0, 1);
             } else {
-                // User is scrolling somewhere within the header
                 refreshLabel.text = @REFRESH_TEXT_PULL;
                 [refreshArrow layer].transform = CATransform3DMakeRotation(M_PI * 2, 0, 0, 1);
             }
         }];
     }
 }
+
 #pragma mark - setup UI Refresh Header
+/**
+ *  setup UI
+ */
 - (void)addPullToRefreshHeader {
-    //setup header
+   
     refreshHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0 - REFRESH_HEADER_HEIGHT, 320, REFRESH_HEADER_HEIGHT)];
     refreshHeaderView.backgroundColor = [UIColor clearColor];
     
@@ -141,10 +143,11 @@
 #pragma mark - refresh header funtion
 - (void) refresh:(id)sender
 {
-    // Can do some thing..
-    //[self clearDataOld];
+   
     [self refreshData];
-    // Time delay is 3 seconds, sure the request load ok, load data or information done.
+    /**
+     *  Time delay is 3 seconds, sure the request load ok, load data or information done.
+     */
     double delayInSeconds = 3.0;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     
@@ -163,15 +166,21 @@
     if (isLoading) return;
     isDragging = NO;
     if (scrollView.contentOffset.y <= -REFRESH_HEADER_HEIGHT) {
-        // Released above the header
+        /**
+         *  Released above the header
+         */
         [self startLoading];
     }
 }
-
+/**
+ *  start load header
+ */
 - (void)startLoading {
     isLoading = YES;
     
-    // Show the header
+    /**
+     *  show the header
+     */
     [UIView animateWithDuration:0.3 animations:^{
         self.tableView.contentInset = UIEdgeInsetsMake(REFRESH_HEADER_HEIGHT, 0, 0, 0);
         refreshLabel.text =@REFRESH_LOADING;
@@ -179,14 +188,20 @@
         [refreshSpinner startAnimating];
     }];
     
-    // Refresh action!
+    /**
+     *  refresh action
+     */
     [self refresh];
 }
-
+/**
+ *  stop load header
+ */
 - (void)stopLoading {
     isLoading = NO;
      [self refreshData];
-    // Hide the header
+    /**
+     *  hide the header
+     */
     [UIView animateWithDuration:2.0 animations:^{
         self.tableView.contentInset = UIEdgeInsetsZero;
         [refreshArrow layer].transform = CATransform3DMakeRotation(M_PI * 2, 0, 0, 1);
@@ -197,7 +212,9 @@
 }
 
 - (void)stopLoadingComplete {
-    // Reset the header
+    /**
+     *  reset the header
+     */
     refreshLabel.text = @REFRESH_TEXT_PULL;
     refreshArrow.hidden = NO;
     [refreshSpinner stopAnimating];
@@ -210,6 +227,9 @@
 }
 
 #pragma mark - data Funtion
+/**
+ *  call refresh data from json file.
+ */
 -(void) refreshData{
     
     //get link to json file
@@ -273,6 +293,9 @@
     [operation start];
     
 }
+/**
+ *  select all data from coredata
+ */
 -(void)selectAll
 {
     NSError *error;
@@ -282,6 +305,10 @@
     
     listPost= [[_managedObjectContext executeFetchRequest:fetch error:&error] mutableCopy];
 }
+
+/**
+ *  delete all data from coredata
+ */
 -(void)deleteAll
 {
     NSError *error;
@@ -312,7 +339,9 @@
     }
     
      PostCore *post = [listPost objectAtIndex:indexPath.row];
-    // custom cell
+    /**
+     *  custom cell funtion
+     */
     [cell setupCellwithPost:post];
      return cell;
  
@@ -321,7 +350,9 @@
 
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //set height of cell by height of post text
+    /**
+     *  set height of cell by height of post text
+     */
     PostCore *post = [listPost objectAtIndex:indexPath.row];
     
     NSString *headline  = post.postText;
