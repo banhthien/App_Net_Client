@@ -38,9 +38,8 @@
     AppDelegate *apdelegate = [[UIApplication sharedApplication] delegate];
     _managedObjectContext = [apdelegate managedObjectContext];
     listPost = [NSMutableArray array];
-    /**
-     *  check internet connection
-     */
+    
+    // check internet connection
     self.internetReachability = [Reachability reachabilityForInternetConnection];
     NetworkStatus netStatus = [self.internetReachability currentReachabilityStatus];
     switch (netStatus)
@@ -67,9 +66,7 @@
             break;
             
     }
-    /**
-     *  add refresh header
-     */
+    // add refresh header
     [self addPullToRefreshHeader];
 }
 
@@ -99,10 +96,11 @@
     } else if (isDragging && scrollView.contentOffset.y < 0) {
         [UIView animateWithDuration:0.25 animations:^{
             if (scrollView.contentOffset.y < -REFRESH_HEADER_HEIGHT) {
-                refreshLabel.text = @REFRESH_RELEASE;
+                
+                refreshLabel.text = NSLocalizedString(@"release", nil);
                 [refreshArrow layer].transform = CATransform3DMakeRotation(M_PI, 0, 0, 1);
             } else {
-                refreshLabel.text = @REFRESH_TEXT_PULL;
+                refreshLabel.text = NSLocalizedString(@"text_pull",nil);
                 [refreshArrow layer].transform = CATransform3DMakeRotation(M_PI * 2, 0, 0, 1);
             }
         }];
@@ -145,9 +143,8 @@
 {
    
     [self refreshData];
-    /**
-     *  Time delay is 3 seconds, sure the request load ok, load data or information done.
-     */
+    
+    //Time delay is 3 seconds, sure the request load ok, load data or information done.
     double delayInSeconds = 3.0;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     
@@ -166,9 +163,8 @@
     if (isLoading) return;
     isDragging = NO;
     if (scrollView.contentOffset.y <= -REFRESH_HEADER_HEIGHT) {
-        /**
-         *  Released above the header
-         */
+        
+        // Released above the header
         [self startLoading];
     }
 }
@@ -178,19 +174,15 @@
 - (void)startLoading {
     isLoading = YES;
     
-    /**
-     *  show the header
-     */
+    // show the header
     [UIView animateWithDuration:0.3 animations:^{
         self.tableView.contentInset = UIEdgeInsetsMake(REFRESH_HEADER_HEIGHT, 0, 0, 0);
-        refreshLabel.text =@REFRESH_LOADING;
+        refreshLabel.text =[NSString stringWithFormat:NSLocalizedString(@"loading", Nil)];
         refreshArrow.hidden = YES;
         [refreshSpinner startAnimating];
     }];
     
-    /**
-     *  refresh action
-     */
+    //refresh action
     [self refresh];
 }
 /**
@@ -199,9 +191,8 @@
 - (void)stopLoading {
     isLoading = NO;
      [self refreshData];
-    /**
-     *  hide the header
-     */
+    
+     // hide the header
     [UIView animateWithDuration:2.0 animations:^{
         self.tableView.contentInset = UIEdgeInsetsZero;
         [refreshArrow layer].transform = CATransform3DMakeRotation(M_PI * 2, 0, 0, 1);
@@ -212,10 +203,10 @@
 }
 
 - (void)stopLoadingComplete {
-    /**
-     *  reset the header
-     */
-    refreshLabel.text = @REFRESH_TEXT_PULL;
+    
+     // reset the header
+    
+    refreshLabel.text = NSLocalizedString(@"text_pull",nil);
     refreshArrow.hidden = NO;
     [refreshSpinner stopAnimating];
    
@@ -233,7 +224,7 @@
 -(void) refreshData{
     
     //get link to json file
-    NSString *string = [NSString stringWithFormat:@JSON_LINK];
+    NSString *string = [NSString stringWithFormat:JSON_LINK];
     NSURL *url = [NSURL URLWithString:string];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
@@ -241,37 +232,13 @@
     operation.responseSerializer = [AFJSONResponseSerializer serializer];
     
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSError *error;
         
-        NSArray* dataPost = [responseObject valueForKeyPath:@DATA_NAME];
+        NSArray* dataPost = [responseObject valueForKeyPath:DATA_NAME];
         //delete old data from coredata
         [self deleteAll];
         
         //insert data from json file to coredata
-        for (NSDictionary *dict in dataPost)
-        {
-            PostCore *post = [NSEntityDescription insertNewObjectForEntityForName:@"PostCore" inManagedObjectContext:_managedObjectContext];
-            post.postText =[dict objectForKey:@POST_KEY];
-            post.time= [dict objectForKey:@TIME_KEY];
-            //post.reply = [dict objectForKey:@REPLY_KEY];
-            //post.report = [dict objectForKey:@REPORT_KEY];
-            //post.star = [dict objectForKey:@STAR_KEY];
-            NSDictionary* user = [dict valueForKey:@USER_KEY];
-            if(user)
-            {
-                NSDictionary* avatarImage = [user valueForKey:@AVATAR_KEY];
-                if (avatarImage)
-                {
-                    post.imageUrl = [avatarImage valueForKey:@URL_IMAGE_KEY];
-                }
-                post.name = [user objectForKey:@USER_NAME_KEY];
-            }
-                       
-            if(![_managedObjectContext save:&error]){
-                NSLog(@"co loi , %@", [error localizedDescription]);
-            }
-
-        }
+        [UTILS addObjectFromJsonToData:dataPost withManagerObject:_managedObjectContext];
         
         // select all data, then add to listPost
         [self selectAll];
@@ -360,7 +327,7 @@
     CGRect  rect        = [headline boundingRectWithSize:CGSizeMake(300, 1000) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:font} context:nil];
     
     CGFloat height      = roundf(rect.size.height +4);
-    return height+120;
+    return height+BONUS_HEIGHT;
     
 }
 

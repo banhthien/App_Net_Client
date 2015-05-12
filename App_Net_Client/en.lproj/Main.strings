@@ -1,0 +1,21 @@
+
+/* Class = "UINavigationItem"; title = "App.Net Client"; ObjectID = "Ago-Kf-Kz2"; */
+"Ago-Kf-Kz2.title" = "App.Net Client";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "ItB-kM-pxH"; */
+"ItB-kM-pxH.text" = "Name";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "UHg-mr-d52"; */
+"UHg-mr-d52.normalTitle" = "Button";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "bgY-k7-44J"; */
+"bgY-k7-44J.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Post"; ObjectID = "qa9-dM-su9"; */
+"qa9-dM-su9.text" = "Post";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "tdl-kB-v1b"; */
+"tdl-kB-v1b.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "time"; ObjectID = "yLR-iQ-G4m"; */
+"yLR-iQ-G4m.text" = "time";

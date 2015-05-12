@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "PostCore.h"
+#import "define.h"
 @interface CustomTableViewCell : UITableViewCell
 {
     
@@ -15,9 +16,6 @@
     __weak IBOutlet UILabel *nameLabel;
     __weak IBOutlet UILabel *postLabel;
     __weak IBOutlet UILabel *timeLabel;
-    __weak IBOutlet UIButton *replyButton;
-    __weak IBOutlet UIButton *reportButton;
-    __weak IBOutlet UIButton *starButton;
 }
 
 -(void)setupCellwithPost:(PostCore*)post;

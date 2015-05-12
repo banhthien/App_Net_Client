@@ -10,7 +10,7 @@
 #import "CustomTableViewCell.h"
 #import "AFNetworking.h"
 #import "AppDelegate.h"
-
+#import "UtilsManager.h"
 @interface MainViewController : UITableViewController
 @property BOOL isDragging;
 @property BOOL isLoading;

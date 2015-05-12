@@ -27,9 +27,7 @@
     postLabel.text = post.postText;
     nameLabel.text = post.name;
    
-    /**
-     config time and show time
-     */
+    //config time and show time
     NSDateFormatter *inputFormatter = [[NSDateFormatter alloc] init];
     [inputFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
     
@@ -40,9 +38,7 @@
     NSString *newDateString = [outputFormatter stringFromDate:formatterDate];
     timeLabel.text=newDateString;
     
-    /**
-     *  Load image then fix border
-     */
+    //Load image then fix border
     NSURL *url = [NSURL URLWithString:post.imageUrl];
     NSData *data = [NSData dataWithContentsOfURL:url];
     UIImage * image = [UIImage imageWithData:data];
@@ -51,13 +47,9 @@
     thumbImageView.layer.borderWidth = 0.5f;
     thumbImageView.layer.borderColor = [UIColor grayColor].CGColor;
     thumbImageView.layer.masksToBounds = NO;
-    thumbImageView.layer.cornerRadius = 20;
+    thumbImageView.layer.cornerRadius = CORNER_RADIUS;
     thumbImageView.clipsToBounds = YES;
-    
-    //set text button
-    //[replyButton setTitle:[NSString stringWithFormat:@"%@ Replies",post.reply] forState:UIControlStateNormal];
-    //[reportButton setTitle:[NSString stringWithFormat:@"%@ Reports",post.report] forState:UIControlStateNormal];
-    //[starButton setTitle:[NSString stringWithFormat:@"%@ Stars",post.star] forState:UIControlStateNormal];
+
 
 }
 @end

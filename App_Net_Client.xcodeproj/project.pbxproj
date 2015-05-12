@@ -21,6 +21,9 @@
 		5783230D1B00A5B300E7F410 /* PostCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 5783230C1B00A5B300E7F410 /* PostCore.m */; };
 		578323101B00B5EA00E7F410 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5783230F1B00B5EA00E7F410 /* SystemConfiguration.framework */; };
 		578323161B00B9A500E7F410 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 578323151B00B9A500E7F410 /* Reachability.m */; };
+		578644E81B01FE8600B93E64 /* UtilsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 578644E71B01FE8600B93E64 /* UtilsManager.m */; };
+		578644FD1B020B0B00B93E64 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 578644FF1B020B0B00B93E64 /* Localizable.strings */; };
+		578645021B020EF000B93E64 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 578645011B020EF000B93E64 /* Default-568h@2x.png */; };
 		BEE905E53B0867AABCC9D5C7 /* libPods-App_Net_Client.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 88C4A5C20176A7F02D58500C /* libPods-App_Net_Client.a */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +63,10 @@
 		578323141B00B9A500E7F410 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		578323151B00B9A500E7F410 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		578323171B00BF5D00E7F410 /* PostData 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "PostData 2.xcdatamodel"; sourceTree = "<group>"; };
+		578644E61B01FE8600B93E64 /* UtilsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UtilsManager.h; sourceTree = "<group>"; };
+		578644E71B01FE8600B93E64 /* UtilsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UtilsManager.m; sourceTree = "<group>"; };
+		578644FE1B020B0B00B93E64 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		578645011B020EF000B93E64 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		82FD16D14DD537A5FB5A5BAD /* Pods-App_Net_Client.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App_Net_Client.release.xcconfig"; path = "Pods/Target Support Files/Pods-App_Net_Client/Pods-App_Net_Client.release.xcconfig"; sourceTree = "<group>"; };
 		88C4A5C20176A7F02D58500C /* libPods-App_Net_Client.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-App_Net_Client.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE205C5E5BF267F77EAFC4C6 /* Pods-App_Net_Client.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App_Net_Client.debug.xcconfig"; path = "Pods/Target Support Files/Pods-App_Net_Client/Pods-App_Net_Client.debug.xcconfig"; sourceTree = "<group>"; };
@@ -140,6 +147,7 @@
 		576CE45C1AF8C6D4009E50FE = {
 			isa = PBXGroup;
 			children = (
+				578645011B020EF000B93E64 /* Default-568h@2x.png */,
 				576CE4671AF8C6D4009E50FE /* App_Net_Client */,
 				576CE4841AF8C6D4009E50FE /* App_Net_ClientTests */,
 				576CE4661AF8C6D4009E50FE /* Products */,
@@ -160,7 +168,7 @@
 		576CE4671AF8C6D4009E50FE /* App_Net_Client */ = {
 			isa = PBXGroup;
 			children = (
-				578323071B009AEB00E7F410 /* Share */,
+				578323071B009AEB00E7F410 /* Shared */,
 				572668221AFB3B04006733D5 /* View */,
 				5726681D1AFB2962006733D5 /* Controllers */,
 				5726681B1AFB2945006733D5 /* Models */,
@@ -181,6 +189,7 @@
 				57626DB51AF9F0C50039AD5D /* arrow.png */,
 				576CE4691AF8C6D4009E50FE /* Info.plist */,
 				576CE46A1AF8C6D4009E50FE /* main.m */,
+				578644FF1B020B0B00B93E64 /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -202,14 +211,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		578323071B009AEB00E7F410 /* Share */ = {
+		578323071B009AEB00E7F410 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				578323141B00B9A500E7F410 /* Reachability.h */,
-				578323151B00B9A500E7F410 /* Reachability.m */,
+				578644E51B01FE6500B93E64 /* InternetHelper */,
+				578644E41B01FE5400B93E64 /* Utils */,
 				578323061B009AE500E7F410 /* define.h */,
 			);
-			name = Share;
+			name = Shared;
 			sourceTree = "<group>";
 		};
 		5783230E1B00A5B700E7F410 /* PostCoreDataModel */ = {
@@ -219,6 +228,24 @@
 				5783230C1B00A5B300E7F410 /* PostCore.m */,
 			);
 			name = PostCoreDataModel;
+			sourceTree = "<group>";
+		};
+		578644E41B01FE5400B93E64 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				578644E61B01FE8600B93E64 /* UtilsManager.h */,
+				578644E71B01FE8600B93E64 /* UtilsManager.m */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		578644E51B01FE6500B93E64 /* InternetHelper */ = {
+			isa = PBXGroup;
+			children = (
+				578323141B00B9A500E7F410 /* Reachability.h */,
+				578323151B00B9A500E7F410 /* Reachability.m */,
+			);
+			name = InternetHelper;
 			sourceTree = "<group>";
 		};
 		C0543CB61A6E5FE2B02889B7 /* Frameworks */ = {
@@ -315,8 +342,10 @@
 			files = (
 				576CE4771AF8C6D4009E50FE /* Main.storyboard in Resources */,
 				576CE47C1AF8C6D4009E50FE /* LaunchScreen.xib in Resources */,
+				578644FD1B020B0B00B93E64 /* Localizable.strings in Resources */,
 				576CE4791AF8C6D4009E50FE /* Images.xcassets in Resources */,
 				57626DB61AF9F0C50039AD5D /* arrow.png in Resources */,
+				578645021B020EF000B93E64 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,6 +401,7 @@
 				57626D8E1AF9B49E0039AD5D /* MainViewController.m in Sources */,
 				576CE46B1AF8C6D4009E50FE /* main.m in Sources */,
 				5783230D1B00A5B300E7F410 /* PostCore.m in Sources */,
+				578644E81B01FE8600B93E64 /* UtilsManager.m in Sources */,
 				57626DB41AF9BFB00039AD5D /* CustomTableViewCell.m in Sources */,
 				5783230A1B00A51200E7F410 /* PostData.xcdatamodeld in Sources */,
 			);
@@ -410,6 +440,14 @@
 				576CE47B1AF8C6D4009E50FE /* Base */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		578644FF1B020B0B00B93E64 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				578644FE1B020B0B00B93E64 /* Base */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

@@ -1,0 +1,12 @@
+/* 
+  localizable.strings
+  App_Net_Client
+
+  Created by iOSx New on 5/12/15.
+  Copyright (c) 2015 BanhThien. All rights reserved.
+*/
+
+"home_PageTile" = "App.net Timeline";
+"REFRESH_TEXT_PULL" = "Pull down to refresh...";
+"REFRESH_RELEASE" = "Release to refresh...";
+"REFRESH_LOADING" = "Loading...";
